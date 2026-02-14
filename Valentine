@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine Surprise 💘</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            margin-top: 100px;
+            background: linear-gradient(135deg, #ff9ecf, #ffc0cb);
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: white;
+            text-shadow: 2px 2px 4px #ff4d88;
+        }
+
+        #message {
+            display: none;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d88;
+            color: white;
+            transform: scale(1);
+        }
+
+        #yesBtn:hover {
+            background-color: #ff1a66;
+        }
+
+        #noBtn {
+            background-color: white;
+            color: #ff4d88;
+            position: absolute;
+        }
+
+        .heart {
+            position: fixed;
+            color: white;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#" onclick="showMessage()" style="font-size:20px; color:white; text-decoration:none;">Click me 💌</a>
+
+<div id="message">
+    <h1>Every moment with you just feels so fine,<br>
+    so can I call you mine this Valentine? 💖</h1>
+
+    <button id="yesBtn" onclick="alert('You just made my day ❤️')">
+        Hell yeah 😎
+    </button>
+
+    <button id="noBtn">
+        No 🙁
+    </button>
+</div>
+
+<script>
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+    moveNoButton();
+}
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let scale = 1;
+
+function moveNoButton() {
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+
+    // Make YES button bigger
+    scale += 0.2;
+    yesBtn.style.transform = "scale(" + scale + ")";
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 300);
+</script>
+
+</body>
+</html>
